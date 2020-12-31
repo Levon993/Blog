@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebResourcesPaths">
+    <contentEntries>
+      <entry url="file://$PROJECT_DIR$">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/app" />
+            <path value="file://$PROJECT_DIR$/storage" />
+            <path value="file://$PROJECT_DIR$/public" />
+            <path value="file://$PROJECT_DIR$/public/storage" />
+            <path value="file://$PROJECT_DIR$/public/storage/images" />
+            <path value="file://$PROJECT_DIR$/public/storage/LayoutImages" />
+            <path value="file://$PROJECT_DIR$/storage/app" />
+            <path value="file://$PROJECT_DIR$/storage/app/public" />
+            <path value="file://$PROJECT_DIR$/storage/app/public/images" />
+            <path value="file://$PROJECT_DIR$/storage/app/public/LayoutImages" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+    </contentEntries>
+  </component>
+</project>
