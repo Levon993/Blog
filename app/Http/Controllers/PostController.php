@@ -4,19 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Posts\PostRepository;
+use App\Repositories\Logs\LogsRepository;
+use mysql_xdevapi\Exception;
 
 class PostController extends Controller
 {
     protected $postRepo;
-    public function __construct(PostRepository $repo)
+
+    protected $logInstance;
+    public function __construct(PostRepository $repo, LogsRepository $log)
     {
         $this->postRepo = $repo;
+        $this->logInstance = $log;
     }
 
     public function index(Request $request){
-        $posts = $this->postRepo->index($request);
+        try {
 
-        return  $posts;
+
+            $posts = $this->postRepo->index($request);
+
+            return $posts;
+        }catch (\Exception $exception){
+            $this->logInstance->create($exception);
+        }
     }
 
     public function Create(Request $request){

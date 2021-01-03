@@ -18,11 +18,11 @@
                 <template #icon>
                     <i class='bx bx-grid-alt'></i>
                 </template>
-                Market Overview
+                Logs
             </vs-sidebar-item>
             <vs-sidebar-item id="Music">
                 <template #icon>
-                    <i class='bx bxs-music'></i>
+                    <router-link tag="a" to="/logs/list"></router-link>
                 </template>
                 Music
             </vs-sidebar-item>

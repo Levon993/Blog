@@ -36,6 +36,17 @@ const router = new Router({
                         ]
                     }
                 },
+                {
+                    // UserProfile will be rendered inside User's <router-view>
+                    // when /user/:id/profile is matched
+                    path: '/logs/list',
+                    component: () => import('../components/LogsComponent'),
+                    meta: {
+                        middleware:[
+                            auth
+                        ]
+                    }
+                },
 
 
             ]

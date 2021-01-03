@@ -92,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/post/get').then(function (res) {
-        // console.log(res.data.data)
+        // console.log(res.data)
         _this2.posts = res.data.data;
       })["catch"](function (e) {
         _this2.errors = e.response.data;

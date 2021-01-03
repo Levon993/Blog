@@ -8,7 +8,7 @@ use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Repositories\Logs\LogsRepository;
 
 class AuthController extends Controller
 {
@@ -17,7 +17,7 @@ class AuthController extends Controller
     public function login(Request $request){
 
 
-//        try {
+        try {
 
 
             $loginData = $request->validate([
@@ -31,42 +31,67 @@ class AuthController extends Controller
             $role = auth()->user()->roles;
             return response()->json(['user' => auth()->user(), 'access_token' => $accessToken, 'role' => $role]);
 
-//        }catch (\Throwable $exception){
-//            dd($exception);
-//            return response()->json(['success'=>'false' ]);
-//
-//        }
+        }catch (\Throwable $exception){
+            $log = new LogsRepository();
+            $log->create($exception);
+
+
+            return response()->json(['success'=>false]);
+        }
 
     }
 
     public function register(UserCreateRequest $request){
-        $user = User::create(
-            [
-                'name'=> $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]
-
-        );
+        try {
 
 
-         $accessToken = $user->createToken('authToken')->accessToken;
-        return response()->json(['user' => $user, 'accessToken' => $accessToken]);
+            $user = User::create(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password)
+                ]
+
+            );
+
+
+            $accessToken = $user->createToken('authToken')->accessToken;
+            return response()->json(['user' => $user, 'accessToken' => $accessToken]);
+        }catch (\Throwable $exception){
+            $log = new LogsRepository();
+            $log->create($exception);
+
+
+            return response()->json(['success'=>false]);
+        }
     }
 
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        try {
 
-//        $request->session()->invalidate();
+            Auth::logout();
+        }catch (\Throwable $exception){
+            $log = new LogsRepository();
+            $log->create($exception);
 
-//        $request->session()->regenerateToken();
 
-//        return redirect('/');
+            return response()->json(['success'=>false]);
+        }
+
     }
     public function registerImage(){
-        $image  = Storage::get('/public/LayoutImages/sd.jpg');
-        return response($image);
+        try {
+
+            $image  = Storage::get('/public/LayoutImages/sd.jpg');
+            return response($image);
+        }catch (\Throwable $exception){
+            $log = new LogsRepository();
+            $log->create($exception);
+
+
+            return response()->json(['success'=>false]);
+        }
     }
 }

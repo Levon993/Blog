@@ -81,7 +81,7 @@
             },
             getAllPosts(){
             axios.get('/api/post/get').then(res=>{
-                 // console.log(res.data.data)
+                 // console.log(res.data)
                 this.posts = res.data.data
 
             }).catch(e=>{

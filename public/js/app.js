@@ -3593,7 +3593,7 @@ var render = function() {
                 }
               ])
             },
-            [_vm._v("\n            Market Overview\n        ")]
+            [_vm._v("\n            Logs\n        ")]
           ),
           _vm._v(" "),
           _c(
@@ -3604,7 +3604,11 @@ var render = function() {
                 {
                   key: "icon",
                   fn: function() {
-                    return [_c("i", { staticClass: "bx bxs-music" })]
+                    return [
+                      _c("router-link", {
+                        attrs: { tag: "a", to: "/logs/list" }
+                      })
+                    ]
                   },
                   proxy: true
                 }
@@ -45893,6 +45897,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '',
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../components/Home */ "./resources/js/components/Home.vue"));
+      },
+      meta: {
+        middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_6__["default"]]
+      }
+    }, {
+      // UserProfile will be rendered inside User's <router-view>
+      // when /user/:id/profile is matched
+      path: '/logs/list',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/LogsComponent */ "./resources/js/components/LogsComponent.vue"));
       },
       meta: {
         middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_6__["default"]]
