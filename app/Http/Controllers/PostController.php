@@ -29,4 +29,14 @@ class PostController extends Controller
         $subjects = $this->postRepo->getPostSubjests();
         return $subjects;
     }
+    public function like(Request $request){
+      $result = $this->postRepo->postLikePost($request);
+        return response()->json($result);
+
+    }
+    public function LikeCount(Request $request){
+        $count = $this->postRepo->LikeCount($request);
+        return $count;
+    }
+
 }

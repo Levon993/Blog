@@ -26,3 +26,7 @@ Route::post('/logout', 'AuthController@logout');
 Route::post('/post/create', 'PostController@Create');
 Route::get('/post/get', 'PostController@index');
 Route::get('/post/subjects', 'PostController@getSubjects');
+Route::post('/post/like', 'PostController@like');
+Route::post('/post/likes/count', 'PostController@LikeCount');
+
+

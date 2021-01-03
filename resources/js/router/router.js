@@ -44,7 +44,9 @@ const router = new Router({
         },
         {
 
-            path: '/index',
+            path: '/',
+            // component: () => import('../components/TetsNav'),
+
             component:() => import('../layouts/index/indexLayout'),
             name:'index',
 
@@ -91,11 +93,11 @@ const router = new Router({
             component:()=> import('../components/CreatePostForm'),
             name: 'login',
         },
-        {
-            path:'/post/index',
-            component:()=> import('../components/index'),
-            name: 'index',
-        }
+        // {
+        //     path:'/post/index',
+        //     component:()=> import('../components/index'),
+        //     name: 'index',
+        // }
     ]
 
 })

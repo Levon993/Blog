@@ -9,16 +9,24 @@ use App\Models\Subject;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Like;
+use phpDocumentor\Reflection\Types\This;
+use App\User;
 class PostRepository extends CoreRepository implements ResourcesInterface
 {
 
     public function index(Request $request)
     {
-        $posts = $this->startConditions()->paginate(20);
-        $url =  public_path();
-        return response()->json([$posts, $url] );
+        $posts = $this->startConditions()->with(['subject', 'likes']);
+        $post =  $posts->orderBy('created_at', 'desc')->paginate(7);
+
+        return response()->json($post);
     }
+    public function LikeCount(Request $request){
+        $Likes = $this->startConditions()->with('likes')->where('id', $request->id )->count();
+        return \response()->json($Likes);
+    }
+
 
     protected function getModelClass()
     {
@@ -56,6 +64,38 @@ class PostRepository extends CoreRepository implements ResourcesInterface
         $post->subject()->attach([$post->id,$request->subject]);
 
         return response()->json($path);
+    }
+
+    public function postLikePost(Request $request)
+    {
+        $post_id = $request->postId;
+        $is_like = $request->isLike === 'true';
+        $update = false;
+        $post = $this->startConditions()->find($post_id);
+        if (!$post) {
+            return null;
+        }
+        $user = User::where('id', $request->userId)->first();
+        $like = $user->likes()->where('post_id', $post_id)->first();
+        if ($like) {
+            $already_like = $like->like;
+            $update = true;
+            if ($already_like == $is_like) {
+                $like->delete();
+                return null;
+            }
+        } else {
+            $like = new Like();
+        }
+        $like->like = $is_like;
+        $like->user_id = $user->id;
+        $like->post_id = $post->id;
+        if ($update) {
+            $like->update();
+        } else {
+            $like->save();
+        }
+        return null;
     }
 
     public function destroy(Request $request)

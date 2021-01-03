@@ -45899,15 +45899,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       }
     }]
   }, {
-    path: '/index',
+    path: '/',
+    // component: () => import('../components/TetsNav'),
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../layouts/index/indexLayout */ "./resources/js/layouts/index/indexLayout.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../layouts/index/indexLayout */ "./resources/js/layouts/index/indexLayout.vue"));
     },
     name: 'index',
     children: [{
       path: '',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/Index */ "./resources/js/components/Index.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Index */ "./resources/js/components/Index.vue"));
       }
     }]
   }, {
@@ -45916,7 +45917,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/login',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/LoginForm */ "./resources/js/components/LoginForm.vue"));
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/LoginForm */ "./resources/js/components/LoginForm.vue"));
     },
     name: 'login' // meta: {
     //     middleware:[
@@ -45927,7 +45928,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/profile',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/UserComponent */ "./resources/js/components/UserComponent.vue"));
+      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/UserComponent */ "./resources/js/components/UserComponent.vue"));
     },
     name: 'login'
   }, {
@@ -45936,13 +45937,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/CreatePostForm */ "./resources/js/components/CreatePostForm.vue"));
     },
     name: 'login'
-  }, {
-    path: '/post/index',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/index */ "./resources/js/components/index.vue"));
-    },
-    name: 'index'
-  }]
+  } // {
+  //     path:'/post/index',
+  //     component:()=> import('../components/index'),
+  //     name: 'index',
+  // }
+  ]
 });
 
 function nextFactory(context, middleware, index) {

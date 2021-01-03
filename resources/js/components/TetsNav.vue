@@ -11,22 +11,22 @@
                                 <li>
                                     <a href="#">Home 1</a>
                                 </li>
-                                <li >
-                                    <a href="">Home 2</a>
+                                <li>
+                                    <a href="#">Home 2</a>
                                 </li>
                                 <li>
                                     <a href="#">Home 3</a>
                                 </li>
                             </ul>
                         </li>
-                        <li v-if="userStatus === 'admin'">
-                            <a href="/dashboard">Dashboard</a>
+                        <li>
+                            <a href="#">About</a>
                         </li>
                         <li>
                             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
                             <ul class="collapse list-unstyled" id="pageSubmenu">
-                                <li >
-                                    <a href="">Dashboard</a>
+                                <li>
+                                    <a href="#">Page 1</a>
                                 </li>
                                 <li>
                                     <a href="#">Page 2</a>
@@ -46,7 +46,7 @@
 
                     <div class="footer">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            <!--                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>-->
+<!--                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>-->
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
 
@@ -73,7 +73,7 @@
                                     <a class="nav-link" href="/">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <!--                                    <a class="nav-link" href="#">About</a>-->
+<!--                                    <a class="nav-link" href="#">About</a>-->
                                     <router-link tag="a" class="nav-link" to="/post/create">Create Post</router-link>
                                 </li>
                                 <li class="nav-item">
@@ -86,9 +86,9 @@
                         </div>
                     </div>
                 </nav>
-                <div>
-                    <router-view></router-view>
-                </div>
+<div>
+    <router-view></router-view>
+</div>
             </div>
         </div>
 
@@ -101,21 +101,33 @@
         //     footer
         // },
         data:() => ({
-            active: 'guide',
-            userStatus : null,
-
+            active: 'guide'
         }),
         mounted() {
-            this.getCurrentUser()
-
+            // this.fotTemplate()
         },
-        methods: {
-           getCurrentUser(){
-               let User = JSON.parse(localStorage.getItem('CurrentUser'))
+        methods:{
+            fotTemplate(){
+                window.addEventListener('DOMContentLoaded', () => {
 
-               // console.log(User.role[0].name)
-               this.userStatus = User.role[0].name
-           }
+                    const observer = new IntersectionObserver(entries => {
+                        entries.forEach(entry => {
+                            const id = entry.target.getAttribute('id');
+                            if (entry.intersectionRatio > 0) {
+                                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+                            } else {
+                                document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
+                            }
+                        });
+                    });
+
+                    // Track all sections that have an `id` applied
+                    document.querySelectorAll('section[id]').forEach((section) => {
+                        observer.observe(section);
+                    });
+
+                });
+            }
         }
     }
 </script>
